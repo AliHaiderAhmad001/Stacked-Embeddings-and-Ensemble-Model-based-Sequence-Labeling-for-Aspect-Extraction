@@ -7,8 +7,11 @@ Original file is located at
     https://colab.research.google.com/drive/1E2ZHJl-NbC_6KKMV8eF817Px3KK9OwG5
 """
 
-#!pip install gensim
-# Dataset: amazon-fine-food-reviews + SE14-Res
+'''
+- Dataset: amazon-fine-food-reviews + SE14-Res.
+- I will use this naive model, to process words that have no emb (OOV)
+'''
+
 from gensim.models import FastText
 import pandas as pd
 import re
@@ -61,4 +64,4 @@ model.train(sentences, total_examples=len(sentences), epochs=50)
 
 fname='/content/drive/MyDrive/Colab Notebooks/AE/models/fast-text-model'
 model.save(fname)
-model = FastText.load(fname)
+# model = FastText.load(fname)
