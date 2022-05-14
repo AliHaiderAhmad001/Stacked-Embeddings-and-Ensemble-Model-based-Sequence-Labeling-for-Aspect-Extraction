@@ -8,6 +8,7 @@ Original file is located at
 """
 
 #!pip install gensim
+# Dataset: amazon-fine-food-reviews + SE14-Res
 from gensim.models import FastText
 import pandas as pd
 import re
