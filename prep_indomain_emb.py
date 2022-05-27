@@ -18,7 +18,7 @@ def extract_all_vocabulary(file_path):
             continue
         else:
             word, _ = line.split()
-            words.append(word.lower())
+            words.append(word)
     fh.close()
     return set(words)
 
@@ -49,8 +49,8 @@ def gen_np_embedding(fn, word_idx_fn, out_fn, dim=100):
             rec = l.rstrip().split(' ')
             if len(rec) == 2:  # skip the first line.
                 continue
-            if rec[0].lower() in word_idx:
-                embedding[word_idx[rec[0].lower()]] = np.array([float(r) for r in rec[1:]])
+            if rec[0] in word_idx:
+                embedding[word_idx[rec[0]]] = np.array([float(r) for r in rec[1:]])
     ovvCount=0
     with open(out_fn+".oov.txt", "w") as fw:
         for w in word_idx:
@@ -65,4 +65,4 @@ word_idx_file='/content/drive/MyDrive/Colab Notebooks/AE/data/worIdx_.json'
 restaurant_emb='/content/drive/MyDrive/Colab Notebooks/AE/data/restaurant_emb'
 
 # There are 401 vocab that do not have emb (OOV)
-ovvCount=gen_np_embedding(restaurant_emb_raw,word_idx_file,restaurant_emb) # 401
+ovvCount=gen_np_embedding(restaurant_emb_raw,word_idx_file,restaurant_emb)

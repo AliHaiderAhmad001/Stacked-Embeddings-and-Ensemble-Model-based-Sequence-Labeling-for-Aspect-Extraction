@@ -19,7 +19,7 @@ out_fn='/content/drive/MyDrive/Colab Notebooks/AE/data/final_indomain_emb.npy'
 
 # oov handling
 def fill_np_embedding(emb_file, word_idx_fn, oov_fn,fast_text_model,out_fn):
-    model=model = FastText.load(fast_text_model)
+    model = FastText.load(fast_text_model)
     with open(word_idx_fn) as f:
         word_idx=json.load(f)
     embedding=np.load(emb_file)
