@@ -9,6 +9,7 @@ Original file is located at
 
 #!pip install transformers
 # Extracting features from a BERT model
+from re import M
 import torch
 import numpy as np
 from transformers import BertTokenizer, BertModel
@@ -21,10 +22,7 @@ class BERTModelFeatures():
     self.model = BertModel.from_pretrained('bert-base-uncased', output_hidden_states = True).eval().to(self.device)
     self.vocab=self.tokenizer.get_vocab()
     self.features=None
-    """
-    with open('zero_padding_bert.npy', 'rb') as f:
-      self.pading_vec=np.load(f)
-    """
+
   # Run the text through BERT, and collect all of the hidden states produced from all 12 layers. 
   def runBert(self,indexed_tokens):
     tokens_tensor = torch.tensor([indexed_tokens]).to(self.device)
@@ -55,20 +53,29 @@ class BERTModelFeatures():
     for token in token_embeddings:
         sum_vec = torch.sum(token[-4:], dim=0)
         token_vecs_sum.append(sum_vec.cpu().numpy())
-    
-    oov=list(set(marked_text.split()).difference(self.vocab))
+    words=marked_text.split()
+    oov=list(set(words).difference(self.vocab))
     idx=[x for x in range(0,len(tokenized_text))]
     for w in oov:
-      w_idx=np.where(np.array(marked_text.split())==w)[0]
+        w_idx=np.where(np.array(words)==w)[0]
+        sub_words_len=len(self.tokenizer.tokenize(w))
+        inc=0
+        for i in w_idx:
+          i+=inc
+          for j in range(1,sub_words_len):
+            words.insert(i+j,'')
+          inc+=sub_words_len-1
+
+    for w in oov:
+      w_idx=np.where(np.array(words)==w)[0]
       sub_words_len=len(self.tokenizer.tokenize(w))
       for i in w_idx:
           for j in range(1,sub_words_len):
             token_vecs_sum[i]+=token_vecs_sum[i+j]
-            del idx[i+j]
-    del idx[0]
-    del idx[-1]
-    token_vecs_sum=np.array(token_vecs_sum)
-    token_vecs_sum=token_vecs_sum[idx]
+            idx.remove(i+j)
+    idx.remove(0)
+    idx.remove(idx[-1])
+    token_vecs_sum=np.array(token_vecs_sum)[idx]
     self.features={'hidden_states':hidden_states,
           'token_embeddings':token_embeddings,
           'tokenized_text':tokenized_text,
@@ -84,6 +91,19 @@ class BERTModelFeatures():
     for token in token_embeddings:
         cat_vec = torch.cat((token[-1], token[-2], token[-3], token[-4]), dim=0)
         token_vecs_cat.append(cat_vec.cpu().numpy())
+        oov=list(set(marked_text.split()).difference(self.vocab))
+    idx=[x for x in range(0,len(tokenized_text))]
+    for w in oov:
+      w_idx=np.where(np.array(marked_text.split())==w)[0]
+      sub_words_len=len(self.tokenizer.tokenize(w))
+      for i in w_idx:
+          for j in range(1,sub_words_len):
+            token_vecs_cat[i]+=token_vecs_cat[i+j]
+            idx.remove(i+j)
+    idx.remove(0)
+    idx.remove(idx[-1])
+    token_vecs_sum=np.array(token_vecs_sum)[idx]
+    
     self.features={'hidden_states':hidden_states,
           'token_embeddings':token_embeddings,
           'tokenized_text':tokenized_text,
