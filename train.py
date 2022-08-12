@@ -94,7 +94,7 @@ history = model.fit(x=train_generator, epochs=150,callbacks=callbacks,
 
 """
 ################################################################
-Epoch 26/100
+Epoch 26/150
 90/90 [==============================] - ETA: 0s - loss: 0.0013
 156 Aspects observed
 134 B-A correctly predicted
