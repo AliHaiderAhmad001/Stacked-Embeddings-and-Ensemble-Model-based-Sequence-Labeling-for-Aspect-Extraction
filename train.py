@@ -95,12 +95,12 @@ history = model.fit(x=train_generator, epochs=150,callbacks=callbacks,
 """
 ################################################################
 Epoch 26/100
-94/94 [==============================] - ETA: 0s - loss: 0.0013
-629 Aspects observed
-521 B-A correctly predicted
-504 Aspects correctly predicted
-B-A accuracy: 82.82988871224165%
-Accuracy: 80.12718600953896%
+90/90 [==============================] - ETA: 0s - loss: 0.0013
+156 Aspects observed
+134 B-A correctly predicted
+131 Aspects correctly predicted
+B-A accuracy: 85.89743598682%
+Accuracy: 83.97435876953896%
 F1-score: 82.12244897959184%
 Recall-score: 79.96820349761526%
 Precision-score: 84.39597315436241%
