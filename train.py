@@ -83,10 +83,10 @@ if use_tpu:
     tpu = tf.distribute.cluster_resolver.TPUClusterResolver.connect()
     strategy = tf.distribute.TPUStrategy(tpu)
     with strategy.scope():
-        model = nn_model(img_path,features,optimizer,timesteps,IOB)
+        model = nn_model(img_path,features,optimizer,timesteps,n_classes)
 else:
     print("Num GPUs Available: ", len(tf.config.list_physical_devices('GPU')))
-    model = nn_model(img_path,features,optimizer,timesteps,IOB)
+    model = nn_model(img_path,features,optimizer,timesteps,n_classes)
 
 history = model.fit(x=train_generator, epochs=150,callbacks=callbacks,
                     use_multiprocessing=True,workers=16)
