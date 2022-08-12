@@ -1,4 +1,4 @@
-# **AspectBasedSentimentAnalysis_SE14**
+# ** Stacked-Embeddings-and-Ensemble-Model-based-Sequence-Labeling-for-Aspect-Extraction **
 Aspect-Based Sentiment Analysis (ABSA) is a type of text analysis that categorizes opinions by aspect and identifies the sentiment related to each aspect. By aspects, we consider attributes or components of an text review (food or a service, staff etc).
 
 Let’s take an example like the one below. The goal here for the ABSA system is to identify the aspects – food,service,staff – with their related sentiment. In other words:
