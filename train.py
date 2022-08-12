@@ -29,13 +29,19 @@ shuffle=True
 partition={}
 labels={}
 valSamp=151
+IOB=False
+mem=[0.77,0.78,0.79]
+lr=0.0005
+decay_value=0.1
 
 data_path='/content/drive/MyDrive/Colab Notebooks/AE/embeddings/LaptopDataEmb/train/'
 y_train=np.load('/content/drive/MyDrive/Colab Notebooks/AE/embeddings/LaptopDataLabels/training_labels.npy')
-for i,x in enumerate(y_train):
-  for j,c in enumerate(x):
-    if c==2:
-      y_train[i][j]=1
+
+if !IOB:
+    for i,x in enumerate(y_train):
+      for j,c in enumerate(x):
+        if c==2:
+          y_train[i][j]=1
 
 params = {'batch_size': batch_size,
           'timesteps': timesteps,
@@ -64,13 +70,13 @@ validation_data=(val_x,val_y)
 img_path="/content/drive/MyDrive/Colab Notebooks/AE/models/LabtopModel/model.png"
 checkpoint_path='/content/drive/MyDrive/Colab Notebooks/AE/models/LabtopModel'
 optimizer=tf.keras.optimizers.RMSprop(
-    learning_rate=0.0007,
+    learning_rate=lr,
     epsilon=1e-08,
     name="RMSprop"
 )
 callbacks = [
-  Monitor(validation_data,save_best_only=True,save=True,patience=12,
-          early_stopping=True,path=checkpoint_path)
+  Monitor(validation_data,save_best_only=True,save=True,patience=15,lr=lr,decay_value=decay_value,
+          early_stopping=True,path=checkpoint_path,mem=mem)
 ]
 
 use_tpu = False
@@ -83,5 +89,21 @@ else:
     print("Num GPUs Available: ", len(tf.config.list_physical_devices('GPU')))
     model = nn_model(img_path,features,optimizer,timesteps)
 
-history = model.fit(x=train_generator, epochs=100,callbacks=callbacks,
-                    use_multiprocessing=True,workers=14)
+history = model.fit(x=train_generator, epochs=150,callbacks=callbacks,
+                    use_multiprocessing=True,workers=16)
+
+"""
+################################################################
+Epoch 26/100
+94/94 [==============================] - ETA: 0s - loss: 0.0013
+629 Aspects observed
+521 B-A correctly predicted
+504 Aspects correctly predicted
+B-A accuracy: 82.82988871224165%
+Accuracy: 80.12718600953896%
+F1-score: 82.12244897959184%
+Recall-score: 79.96820349761526%
+Precision-score: 84.39597315436241%
+Memore State:  [0.78, 0.79, 0.7920792079207921]
+################################################################
+"""
