@@ -10,7 +10,7 @@ Original file is located at
 import warnings
 warnings.filterwarnings("ignore")
 import sys
-sys.path.append('/content/drive/MyDrive/Colab Notebooks/AE')
+sys.path.append('workingDirectoryPath/AE')
 import numpy as np
 from data_generator import DataGenerator
 from callbacks import Monitor
@@ -24,18 +24,22 @@ from tensorflow.keras import backend as K
 batch_size=32
 timesteps=70
 features=2916
-n_classes=2
 shuffle=True
-partition={}
-labels={}
 valSamp=151
 IOB=False
 mem=[0.77,0.78,0.79]
 lr=0.0005
 decay_value=0.1
-
-data_path='/content/drive/MyDrive/Colab Notebooks/AE/embeddings/LaptopDataEmb/train/'
-y_train=np.load('/content/drive/MyDrive/Colab Notebooks/AE/embeddings/LaptopDataLabels/training_labels.npy')
+if IOB:
+    n_classes=3
+else:
+    n_classes=2
+partition={}
+labels={}
+# embeddings path
+data_path='pathToDirectory/train/'
+# labels path
+y_train=np.load('pathToDirectory/training_labels.npy')
 
 if !IOB:
     for i,x in enumerate(y_train):
