@@ -21,8 +21,5 @@ phone O
 | Dataset | F1-Score |
 | -------- | -------- |
 | Restaurants SemEval-14 | 89.3 |
-| -------- | -------- |
 | Restaurants SemEval-16 | 79.8 |
-| -------- | -------- |
 | Laptops SemEval-14 | 83.8 |
-| -------- | -------- |
