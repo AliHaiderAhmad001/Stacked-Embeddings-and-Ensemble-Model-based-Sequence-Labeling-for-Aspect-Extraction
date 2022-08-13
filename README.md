@@ -17,12 +17,6 @@ of O
 this O
 phone O
 ```
-## Result
-| Dataset | F1-Score |
-| -------- | -------- |
-| Restaurants SemEval-14 | 89.3 |
-| Restaurants SemEval-16 | 79.8 |
-| Laptops SemEval-14 | 83.6 |
 
 ## Environment
 All code are tested under python 3.9.8 + tensorflow 2.9.1
@@ -42,3 +36,10 @@ All code are tested under python 3.9.8 + tensorflow 2.9.1
 3. Generate embeddings using "prep_final_data.py".
 4. Train the SE-EM models using "train.py".
 5. Evaluate the trained models using "evaluation.py".
+
+## Results
+| Dataset | F1-Score |
+| -------- | -------- |
+| Restaurants SemEval-14 | 89.3 |
+| Restaurants SemEval-16 | 79.8 |
+| Laptops SemEval-14 | 83.6 |
