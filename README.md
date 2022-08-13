@@ -7,7 +7,7 @@ Given a sentence, the task is to extract aspects. Here is an example:
 "I like the battery life of this phone"
 
 Converting this sentence to IOB would look like this -
-
+```
 I O
 like O
 the O
@@ -16,7 +16,7 @@ life I-A
 of O
 this O
 phone O
-
+```
 ## Result
 | Dataset | F1-Score |
 | -------- | -------- |
