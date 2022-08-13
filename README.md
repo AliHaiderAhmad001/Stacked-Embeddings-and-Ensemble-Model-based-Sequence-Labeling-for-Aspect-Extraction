@@ -31,6 +31,7 @@ All code are tested under python 3.9.8 + tensorflow 2.9.1
 * tensorflow 2.9.1
 * transformers 4.21.1
 * seqeval 1.2.2
+* flairNLP 0.11
 
 ## Work steps:
 1. Download Datasets:
