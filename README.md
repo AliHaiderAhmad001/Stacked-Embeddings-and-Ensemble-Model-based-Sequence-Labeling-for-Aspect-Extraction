@@ -1,16 +1,28 @@
 # **Stacked-Embeddings-and-Ensemble-Model-based-Sequence-Labeling-for-Aspect-Extraction**
-Aspect-Based Sentiment Analysis (ABSA) is a type of text analysis that categorizes opinions by aspect and identifies the sentiment related to each aspect. By aspects, we consider attributes or components of an text review (food or a service, staff etc).
+One key task of fine-grained sentiment analysis of product reviews is to extract product aspects or features that users have expressed opinions on. Aspect extraction is an important task in sentiment analysis (Hu and Liu, 2004) and has many applications (Liu, 2012). It aims to extract opinion targets (or aspects) from opinion text. In product reviews, aspects are product attributes or features. For example, from “Its speed is incredible” in a laptop review, it aims to extract “speed”.
 
-Let’s take an example like the one below. The goal here for the ABSA system is to identify the aspects – food,service,staff – with their related sentiment. In other words:
+## Task
+Given a sentence, the task is to extract aspects. Here is an example:
 
-* food: positive,
-* service: negative
-* staff neutral.
+"I like the battery life of this phone"
 
-**"I was offerd a food here in this hotel, I was offered good food with sushi and the serving of food was impressive. But I experienced bad service here. however the staff here was ok."**
+Converting this sentence to IOB would look like this -
 
-Notice that in the same text, different aspects can have different sentiments. In this sense, the output of ABSA is not meant to be a general indication of the sentiment expressed in the text but aims at providing a more granular and detailed level of information.
+I O
+like O
+the O
+battery B-A
+life I-A
+of O
+this O
+phone O
 
-* positive aspect :- good food (talking about food as aspect and giving positive sens.)
-* negative aspect :- bad service ( talking about service in negative sens.)
-* neurtal aspect :- staff ( talking about staff with ok means neutral while talking about staff.) 
+## Result
+| Dataset | F1-Score |
+| -------- | -------- |
+| Restaurants SemEval-14 | 89.3 |
+| -------- | -------- |
+| Restaurants SemEval-16 | 79.8 |
+| -------- | -------- |
+| Laptops SemEval-14 | 83.8 |
+| -------- | -------- |
