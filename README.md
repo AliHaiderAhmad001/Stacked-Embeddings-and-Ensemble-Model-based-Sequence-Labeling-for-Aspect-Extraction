@@ -40,5 +40,5 @@ All code are tested under python 3.9.8 + tensorflow 2.9.1
   * SemEval 2016 Restaurant (http://alt.qcri.org/semeval2016/task5/).
 2. Extract data from XML files and store in IOB files using "adapter.py"
 3. Generate embeddings using "prep_final_data.py".
-4. Train the SE-EM model using "train.py".
+4. Train the SE-EM models using "train.py".
 5. Evaluate the trained models using "evaluation.py".
