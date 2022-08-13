@@ -3,11 +3,11 @@ One key task of fine-grained sentiment analysis of product reviews is to extract
 
 ## Task
 Given a sentence, the task is to extract aspects. Here is an example:
-
+```
 "I like the battery life of this phone"
 
 Converting this sentence to IOB would look like this -
-```
+
 I O
 like O
 the O
