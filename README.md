@@ -1,6 +1,8 @@
 # **Stacked-Embeddings-and-Ensemble-Model-based-Sequence-Labeling-for-Aspect-Extraction**
 One key task of fine-grained sentiment analysis of product reviews is to extract product aspects or features that users have expressed opinions on. Aspect extraction is an important task in sentiment analysis (Hu and Liu, 2004) and has many applications (Liu, 2012). It aims to extract opinion targets (or aspects) from opinion text. In product reviews, aspects are product attributes or features. For example, from “Its speed is incredible” in a laptop review, it aims to extract “speed”.
 
+## The aim of the project
+Graduation project for a bachelor's degree in informatics engineering (Artificial Intelligence specialization).
 ## Task
 Given a sentence, the task is to extract aspects. Here is an example:
 ```
